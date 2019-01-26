@@ -1,6 +1,6 @@
-# project-spawner CLI
+# Project Spawner CLI
 
-A CLI for project-spawner.
+Create simple web projects with this CLI tool
 
 # License
 
