@@ -1,14 +1,13 @@
-const create_SimpleSetup = require('../utils/createSimpleSetup')
+const create_SimpleSetup = require('../utils/create-simple-setup')
+const create_MediumSetup = require('../utils/create-medium-setup')
 
 module.exports = {
   name: 'project-spawner',
   alias: 'project-s',
   run: async toolbox => {
     const {
-      print: { info, success, colors, spin },
+      print: { success, colors, spin, error },
       parameters,
-      template: { generate },
-      strings: { startCase },
       prompt
     } = toolbox
 
@@ -19,15 +18,16 @@ module.exports = {
       '(Includes Vanilla HTML, CSS, and JavaScript)'
     )}`
     const MEDIUM_SETUP = `Medium Setup \t\t ${colors.success(
-      '(Includes HTML, CSS / SCSS / SASS, and JavaScript (with Babel) all bundled together with Parcel)'
+      '(Includes HTML, CSS / SCSS / SASS, and JavaScript all bundled together with Parcel)'
     )}`
     const CUSTOMIZE_SETUP = `Advanced Setup \t ${colors.success(
       '(Choose Specifically What You Want)'
     )}`
 
     const nameOfProject = parameters.first
-
     spinner.stop()
+
+    /* Prompt */
     const askSetupType = {
       type: 'list',
       name: 'setup',
@@ -39,16 +39,17 @@ module.exports = {
 
     switch (setup) {
       case SIMPLE_SETUP:
-        create_SimpleSetup(toolbox, nameOfProject)
+        create_SimpleSetup(toolbox, nameOfProject);
         break
       case MEDIUM_SETUP:
-        console.log('medium setup')
+        await create_MediumSetup(toolbox, nameOfProject);
         break
       case CUSTOMIZE_SETUP:
-        console.log('custoomize setup')
+        error('This is not yet implemented...😢')
+        return;
         break
     }
 
-    success(` ✔ ✔ ✔ Your New Project Was Created Successfully! ✔ ✔ ✔ `)
+    success(`\n\n✔ ✔ ✔ Your New Project Was Created Successfully! ✔ ✔ ✔\n\n`)
   }
 }

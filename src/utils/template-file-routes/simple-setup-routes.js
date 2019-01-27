@@ -2,7 +2,7 @@ const {
   strings: { startCase }
 } = require('gluegun')
 
-const simpleSetupFiles = nameOfProject => [
+module.exports = nameOfProject => [
   {
     template: 'simple-setup/index.html.ejs',
     target: `./${nameOfProject}/index.html`,
@@ -22,17 +22,3 @@ const simpleSetupFiles = nameOfProject => [
     target: `./${nameOfProject}/styles/styles.css`
   }
 ]
-
-function create_SimpleSetup(toolbox, nameOfProject) {
-  const {
-    template: { generate },
-    filesystem
-  } = toolbox
-
-  simpleSetupFiles(nameOfProject).forEach(async template => {
-    await generate(template)
-    filesystem.dir(`./${nameOfProject}/assets`)
-  })
-}
-
-module.exports = create_SimpleSetup

@@ -1,0 +1,26 @@
+/* Mixins */
+
+@mixin register-font($name, $url, $format, $weight, $style) {
+  @font-face {
+    font-family: $name;
+    src: url($url) format($format);
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+@mixin center-content() {
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin center-el() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin toRem($px: 16, $style: 'font-size') {
+  #{$style}: #{($px / 16)}rem;
+}
