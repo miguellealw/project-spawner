@@ -2,8 +2,9 @@ const create_SimpleSetup = require('../utils/create-simple-setup')
 const create_MediumSetup = require('../utils/create-medium-setup')
 
 module.exports = {
-  name: 'project-spawner',
-  alias: 'project-s',
+  name: 'create',
+  alias: 'c',
+  description: 'Allows you to create a simple, medium, or advanced project setup',
   run: async toolbox => {
     const {
       print: { success, colors, spin, error },
