@@ -1,3 +1,5 @@
+const create_SimpleSetup = require('../utils/createSimpleSetup')
+
 module.exports = {
   name: 'project-spawner',
   alias: 'project-s',
@@ -17,9 +19,9 @@ module.exports = {
       '(Includes Vanilla HTML, CSS, and JavaScript)'
     )}`
     const MEDIUM_SETUP = `Medium Setup \t\t ${colors.success(
-      '(Includes HTML, CSS / SCSS / SASS, and JavaScript (with Babel))'
+      '(Includes HTML, CSS / SCSS / SASS, and JavaScript (with Babel) all bundled together with Parcel)'
     )}`
-    const CUSTOMIZE_SETUP = `Customize Setup \t ${colors.success(
+    const CUSTOMIZE_SETUP = `Advanced Setup \t ${colors.success(
       '(Choose Specifically What You Want)'
     )}`
 
@@ -37,11 +39,7 @@ module.exports = {
 
     switch (setup) {
       case SIMPLE_SETUP:
-        await generate({
-          template: 'html-index.js.ejs',
-          target: `./${nameOfProject}/index.html`,
-          props: { nameOfProject: startCase(nameOfProject) }
-        })
+        create_SimpleSetup(toolbox, nameOfProject)
         break
       case MEDIUM_SETUP:
         console.log('medium setup')
@@ -51,6 +49,6 @@ module.exports = {
         break
     }
 
-    success(`Created Project '${nameOfProject}' Successfully!`)
+    success(` ✔ ✔ ✔ Your New Project Was Created Successfully! ✔ ✔ ✔ `)
   }
 }

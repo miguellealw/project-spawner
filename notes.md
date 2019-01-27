@@ -2,12 +2,12 @@
 
 ## CLI API
 ```
-  spc create <name-of-project>
+  project-spawner <name-of-project>
 ```
 
-## Steps of Commands
+## Commands
 
-**Command:** `spc create <name-of-project>`
+**Command:** `project-spawner <name-of-project>`
 
 **Output**
 ```
@@ -16,8 +16,10 @@
     Simple Setup <
     Medium Setup 
     Customize Setup
-    
-  // This will appear if Customize Setup is selected
+```
+
+### This will appear if 'Customize Setup' is selected
+```
   HTML:
     Vanilla <
     Pug
@@ -30,6 +32,30 @@
     LESS
     Stylus
 
+  CSS Framework:
+    Yes <
+    No
+```
+
+### This will appear if 'Yes' is selected
+```
+  Choose CSS Framework:
+    Bootstrap v4 <
+    Bulma
+    Foundation
+    Semantic UI
+    Spectre
+
+```
+
+
+## Alternative
+**Command:** `spc create <name-of-project> --pug --scss`
+
+
+## Features for the Future
+Setup Backend
+```
 ============ Small Project Creator ============ 
   Backend:
     No Backend <
@@ -37,6 +63,3 @@
     ASP.NET
     Express
 ```
-
-## Alternative
-**Command:** `spc create <name-of-project> --pug --scss`
