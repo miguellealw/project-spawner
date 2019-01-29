@@ -1,56 +1,50 @@
-const create_SimpleSetup = require('../utils/create-simple-setup')
-const create_MediumSetup = require('../utils/create-medium-setup')
+const createSimpleSetup = require('../utils/create-simple-setup')
+const createMediumSetup = require('../utils/create-medium-setup')
+const setupTypePrompt = require('../utils/prompts/setup-type-prompt')
+const { SIMPLE_SETUP, MEDIUM_SETUP, CUSTOMIZE_SETUP } = require('../utils/constants')
 
 module.exports = {
   name: 'create',
   alias: 'c',
-  description: 'Allows you to create a simple, medium, or advanced project setup',
+  description:
+    'Allows you to create a simple, medium, or advanced project setup',
   run: async toolbox => {
     const {
       print: { success, colors, spin, error },
       parameters,
-      prompt
     } = toolbox
-
+    
     const spinner = spin(`${colors.success('Loading Project Spawner...')}`)
     await toolbox.system.run('sleep 1')
 
-    const SIMPLE_SETUP = `Simple Setup \t\t ${colors.success(
-      '(Includes Vanilla HTML, CSS, and JavaScript)'
-    )}`
-    const MEDIUM_SETUP = `Medium Setup \t\t ${colors.success(
-      '(Includes HTML, CSS / SCSS / SASS, and JavaScript all bundled together with Parcel)'
-    )}`
-    const CUSTOMIZE_SETUP = `Advanced Setup \t ${colors.success(
-      '(Choose Specifically What You Want)'
-    )}`
-
+    // Get project name
     const nameOfProject = parameters.first
-    spinner.stop()
-
-    /* Prompt */
-    const askSetupType = {
-      type: 'list',
-      name: 'setup',
-      message: 'Choose Setup:',
-      choices: [SIMPLE_SETUP, MEDIUM_SETUP, CUSTOMIZE_SETUP]
+    if(!nameOfProject) {
+      spinner.stop();
+      error('No project name was specified!');
+      return;
     }
-
-    const { setup } = await prompt.ask([askSetupType])
-
+    
+    spinner.stop()
+    
+    // Prompt where user selects setup type
+    const setup = await setupTypePrompt()
+    
+    let mediumSetupMessage;
     switch (setup) {
       case SIMPLE_SETUP:
-        create_SimpleSetup(toolbox, nameOfProject);
+        await createSimpleSetup(toolbox, nameOfProject)
         break
       case MEDIUM_SETUP:
-        await create_MediumSetup(toolbox, nameOfProject);
+        mediumSetupMessage = await createMediumSetup(toolbox, nameOfProject)
         break
       case CUSTOMIZE_SETUP:
         error('This is not yet implemented...😢')
-        return;
-        break
+        return
+      // break
     }
 
     success(`\n\n✔ ✔ ✔ Your New Project Was Created Successfully! ✔ ✔ ✔\n\n`)
+    if(setup === MEDIUM_SETUP) mediumSetupMessage();
   }
 }

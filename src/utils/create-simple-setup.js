@@ -1,6 +1,6 @@
 const simpleSetupRoutes = require('./template-file-routes/simple-setup-routes')
 
-function create_SimpleSetup(toolbox, nameOfProject) {
+function createSimpleSetup(toolbox, nameOfProject) {
   const {
     template: { generate },
     filesystem
@@ -12,4 +12,4 @@ function create_SimpleSetup(toolbox, nameOfProject) {
   })
 }
 
-module.exports = create_SimpleSetup
+module.exports = createSimpleSetup
