@@ -1,29 +1,30 @@
 const mediumSetupRoutes = require('./template-file-routes/medium-setup-routes')
+const stylingPrompt = require('./prompts/styling-prompt')
 
-async function create_MediumSetup(toolbox, nameOfProject) {
+async function createMediumSetup(toolbox, nameOfProject) {
   const {
     template: { generate },
     filesystem,
-    print: { spin },
-    prompt
+    print: { spin, success, info },
+    prompt,
+    system
   } = toolbox
 
-  const askStylesSetup = {
-    type: 'list',
-    name: 'stylesSetup',
-    message: 'What Kind of Styling Would You Like?:',
-    choices: ['CSS', 'SCSS']
-  }
-
-  const { stylesSetup } = await prompt.ask([askStylesSetup])
+  // Prompt for styling preference
+  const stylesSetup = await stylingPrompt()
 
   if (stylesSetup === 'SCSS') {
-    const shouldMakeFolderStructure = await prompt.confirm('Would You Like your SCSS to be Organized in a Folder Structure?: ')
+    const shouldMakeFolderStructure = await prompt.confirm(
+      'Would You Like your SCSS to be Organized in a Folder Structure?: '
+    )
 
-    mediumSetupRoutes(nameOfProject, shouldMakeFolderStructure).forEach(async template => {
-      await generate(template)
-      filesystem.dir(`./${nameOfProject}/assets`)
-    })
+    mediumSetupRoutes(nameOfProject, shouldMakeFolderStructure).forEach(
+      async template => {
+        await generate(template)
+        // Create assets folder
+        filesystem.dir(`./${nameOfProject}/assets`)
+      }
+    )
   }
 
   // Install NPM Packages
@@ -32,6 +33,15 @@ async function create_MediumSetup(toolbox, nameOfProject) {
   )
   // const npmInit = await system.run(`cd ${nameOfProject} && npm install`)
   spinner.stop()
+
+  return () => {
+    info(`\n -------- Now Run --------`)
+    success(`
+      cd ${nameOfProject}
+
+      npm run dev
+    `)
+  }
 }
 
-module.exports = create_MediumSetup
+module.exports = createMediumSetup

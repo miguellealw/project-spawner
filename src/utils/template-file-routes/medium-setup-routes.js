@@ -6,7 +6,7 @@ const {
 const scssFiles = (nameOfProject, shouldMakeFolderStructure) =>
   !shouldMakeFolderStructure
     ? [
-        /* ============= CSS ============= */
+        /* ============= SCSS ============= */
         {
           template: 'medium-setup/styles/main2.scss.ejs',
           target: `./${nameOfProject}/styles/main.scss`
@@ -83,12 +83,16 @@ module.exports = (nameOfProject, shouldMakeFolderStructure) => [
   {
     template: 'medium-setup/index.html.ejs',
     target: `./${nameOfProject}/index.html`,
-    props: { nameOfProject: startCase(nameOfProject) }
+    props: {
+      nameOfProject: startCase(nameOfProject)
+    }
   },
   {
     template: 'medium-setup/pages/about.html.ejs',
     target: `./${nameOfProject}/pages/about.html`,
-    props: { nameOfProject: startCase(nameOfProject) }
+    props: {
+      nameOfProject: startCase(nameOfProject)
+    }
   },
   /* ============= SCSS ============= */
   ...scssFiles(nameOfProject, shouldMakeFolderStructure),
