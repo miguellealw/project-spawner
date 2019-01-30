@@ -10,7 +10,7 @@
 **Command:** `project-spawner <name-of-project>`
 
 **Output**
-```
+```shell
 ============ Small Project Creator ============  
   Choose Setup:
     Simple Setup <
@@ -18,28 +18,44 @@
     Customize Setup
 ```
 
-### This will appear if 'Customize Setup' is selected
+## Simple Setup
+simply creates a project with a simple folder stuructre
+
+## Medium Setup
+### This will appear if **Meium Setup** is selected
+```shell
+  CSS:
+    CSS <
+    SCSS
+    SASS
 ```
+
+### If SCSS or SASS is selected
+```shell
+  Would you like a folder structure for your SCSS/SASS (Y / n): 
+```
+
+## Customize Setup
+### This will appear if **Customize Setup** is selected
+```shell
   HTML:
-    Vanilla <
+    HTML <
     Pug
     Haml
     
   CSS:
-    Vanilla <
+    CSS <
     SCSS
     SASS
     LESS
     Stylus
 
-  CSS Framework:
-    Yes <
-    No
+  CSS Framework? (Y / n):
 ```
 
-### This will appear if 'Yes' is selected
-```
-  Choose CSS Framework:
+### This will appear if 'Y' is selected
+```shell
+  CSS Framework:
     Bootstrap v4 <
     Bulma
     Foundation
@@ -50,7 +66,7 @@
 
 
 ## Alternative
-**Command:** `spc create <name-of-project> --pug --scss`
+**Command:** `spc create <name-of-project> --pug --scss --folder n --css-framework bulma`
 
 
 ## Features for the Future
@@ -59,7 +75,9 @@ Setup Backend
 ============ Small Project Creator ============ 
   Backend:
     No Backend <
-    Laravel (Laravel needs to be Installed)
-    ASP.NET
     Express
+    Koa
+    Hapi
+    ASP.NET
+    Laravel (Laravel needs to be Installed)
 ```
