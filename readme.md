@@ -1,6 +1,6 @@
 # Project Spawner CLI (still a WIP ⚒)
 
-Quickly and easily create static web projects with Project Spawner
+Quickly and easily generate static web projects with Project Spawner
 
 ## Quick Overview
 Create A Project
