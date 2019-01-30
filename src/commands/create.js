@@ -33,13 +33,12 @@ module.exports = {
     // Prompt where user selects setup type
     const setup = await setupTypePrompt()
     
-    let mediumSetupMessage;
     switch (setup) {
       case SIMPLE_SETUP:
         await createSimpleSetup(toolbox, nameOfProject)
         break
       case MEDIUM_SETUP:
-        mediumSetupMessage = await createMediumSetup(toolbox, nameOfProject)
+        var mediumSetupMessage = await createMediumSetup(toolbox, nameOfProject)
         break
       case CUSTOMIZE_SETUP:
         error('This is not yet implemented...😢')

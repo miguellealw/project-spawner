@@ -1,7 +1,7 @@
-const mediumSetupRoutes = require('./template-file-routes/medium-setup-routes')
 const stylingPrompt = require('./prompts/styling-prompt')
+const common = require('./common')
 
-async function createMediumSetup(toolbox, nameOfProject) {
+async function createMediumSetup(toolbox) {
   const {
     template: { generate },
     filesystem,
@@ -10,34 +10,43 @@ async function createMediumSetup(toolbox, nameOfProject) {
     system
   } = toolbox
 
+  const { nameOfProject } = common
+  
   // Prompt for styling preference
   const stylesSetup = await stylingPrompt()
+  common.stylesSetup = stylesSetup
 
   if (stylesSetup === 'SCSS') {
     const shouldMakeFolderStructure = await prompt.confirm(
       'Would You Like your SCSS to be Organized in a Folder Structure?: '
     )
-
-    mediumSetupRoutes(nameOfProject, shouldMakeFolderStructure).forEach(
-      async template => {
-        await generate(template)
-        // Create assets folder
-        filesystem.dir(`./${nameOfProject}/assets`)
-      }
-    )
+    common.shouldMakeFolderStructure = shouldMakeFolderStructure
   }
+  
+  /*
+    Require here because 'medium-setup-routes' requires the 'common' object to 
+    be populated beforehand
+  */
+  const mediumSetupRoutes = require('./template-file-routes/medium-setup-routes')
+  mediumSetupRoutes.forEach(async template => {
+    await generate(template)
+    // Create assets folder
+    filesystem.dir(`./${nameOfProject}/assets`)
+  })
 
   // Install NPM Packages
   const spinner = spin(
     `Creating project and installing dependencies. This may take a while.`
   )
-  // const npmInit = await system.run(`cd ${nameOfProject} && npm install`)
+  const npmInit = await system.run(`cd ${nameOfProject} && npm install`)
   spinner.stop()
 
+  // Return finishing prompt
   return () => {
-    info(`\n -------- Now Run --------`)
+    info(`\n To Start Your Project Run the Following: `)
     success(`
       cd ${nameOfProject}
+
 
       npm run dev
     `)
