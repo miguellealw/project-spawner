@@ -19,7 +19,7 @@ This CLI comes with three setup options: simple setup, medium setup, and advance
 * Contains vanilla HTML, CSS / SCSS / SASS and JavaScript
 * You are given the option to choose which CSS preprossesor you prefer
 * Bundled together with [Parcel](https://parceljs.org/)
-  * Parcel transforms the code using [Babel's](https://babeljs.io) `@babel/preset-env` by default, so using the latest JavaScript features is possible. [More Info Here](https://parceljs.org/javascript.html#default-babel-transforms)
+  * Parcel transforms the code using [Babel's](https://babeljs.io/docs/en/babel-preset-env) `@babel/preset-env` by default, so using the latest JavaScript features is possible. [More Info Here](https://parceljs.org/javascript.html#default-babel-transforms)
   * If you would like to add more Babel presets [read this](https://parceljs.org/javascript.html#babel)
 * Great for medium sized projects that require more complex CSS and JavaScript
 
