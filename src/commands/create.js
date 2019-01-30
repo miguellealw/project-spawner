@@ -1,6 +1,7 @@
 const createSimpleSetup = require('../utils/create-simple-setup')
 const createMediumSetup = require('../utils/create-medium-setup')
 const setupTypePrompt = require('../utils/prompts/setup-type-prompt')
+const common = require('../utils/common');
 const { SIMPLE_SETUP, MEDIUM_SETUP, CUSTOMIZE_SETUP } = require('../utils/constants')
 
 module.exports = {
@@ -19,12 +20,14 @@ module.exports = {
 
     // Get project name
     const nameOfProject = parameters.first
+    // TODO: Check if project name already exists in the current folder
     if(!nameOfProject) {
       spinner.stop();
       error('No project name was specified!');
       return;
     }
-    
+    common.nameOfProject = nameOfProject;
+
     spinner.stop()
     
     // Prompt where user selects setup type
