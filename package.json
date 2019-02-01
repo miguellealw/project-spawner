@@ -1,7 +1,7 @@
 {
   "name": "project-spawner",
   "version": "0.0.1",
-  "description": "project-spawner CLI",
+  "description": "Quickly and easily generate static web projects with Project Spawner",
   "private": true,
   "bin": {
     "project-spawner": "bin/project-spawner"
@@ -9,7 +9,7 @@
   "scripts": {
     "format": "prettier --write **/*.{js,json} && standard --fix",
     "lint": "standard",
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "watch": "jest --watch",
     "snapupdate": "jest --updateSnapshot",
     "coverage": "jest --coverage"
