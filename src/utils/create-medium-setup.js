@@ -10,8 +10,11 @@ async function createMediumSetup(toolbox) {
     system
   } = toolbox
 
-  const { nameOfProject } = common
-  
+  const {
+    nameOfProject,
+    cliOptions: { npmI: shouldNpmInstall }
+  } = common
+
   // Prompt for styling preference
   const stylesSetup = await stylingPrompt()
   common.stylesSetup = stylesSetup
@@ -22,7 +25,7 @@ async function createMediumSetup(toolbox) {
     )
     common.shouldMakeFolderStructure = shouldMakeFolderStructure
   }
-  
+
   /*
     Require here because 'medium-setup-routes' requires the 'common' object to 
     be populated beforehand
@@ -31,14 +34,15 @@ async function createMediumSetup(toolbox) {
   mediumSetupRoutes.forEach(async template => {
     await generate(template)
     // Create assets folder
-    filesystem.dir(`./${nameOfProject}/assets`)
+    filesystem.dir(`./${nameOfProject}/src/assets`)
   })
-
   // Install NPM Packages
   const spinner = spin(
     `Creating project and installing dependencies. This may take a while.`
   )
-  const npmInit = await system.run(`cd ${nameOfProject} && npm install`)
+  if (shouldNpmInstall) {
+    await system.run(`cd ${nameOfProject} && npm install`)
+  }
   spinner.stop()
 
   // Return finishing prompt
@@ -46,7 +50,7 @@ async function createMediumSetup(toolbox) {
     info(`\n To Start Your Project Run the Following: `)
     success(`
       cd ${nameOfProject}
-
+      ${!shouldNpmInstall ? 'npm install' : ''}
 
       npm run dev
     `)
