@@ -19,16 +19,17 @@ async function createMediumSetup(toolbox) {
   const stylesSetup = await stylingPrompt()
   common.stylesSetup = stylesSetup
 
-  if (stylesSetup === 'SCSS') {
+  if (stylesSetup === 'SCSS' || stylesSetup === 'SASS') {
     const shouldMakeFolderStructure = await prompt.confirm(
-      'Would You Like your SCSS to be Organized in a Folder Structure?: '
+      `Would You Like your ${stylesSetup} to be Organized in a Folder Structure?: `
     )
     common.shouldMakeFolderStructure = shouldMakeFolderStructure
   }
 
+
   /*
     Require here because 'medium-setup-routes' requires the 'common' object to 
-    be populated beforehand
+    be populated before the file is read
   */
   const mediumSetupRoutes = require('./template-file-routes/medium-setup-routes')
   mediumSetupRoutes.forEach(async template => {
@@ -36,6 +37,8 @@ async function createMediumSetup(toolbox) {
     // Create assets folder
     filesystem.dir(`./${nameOfProject}/src/assets`)
   })
+
+
   // Install NPM Packages
   const spinner = spin(
     `Creating project and installing dependencies. This may take a while.`
@@ -44,6 +47,7 @@ async function createMediumSetup(toolbox) {
     await system.run(`cd ${nameOfProject} && npm install`)
   }
   spinner.stop()
+
 
   // Return finishing prompt
   return () => {

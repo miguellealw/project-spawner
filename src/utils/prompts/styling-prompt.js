@@ -5,7 +5,7 @@ async function stylingPrompt() {
     type: 'list',
     name: 'stylesSetup',
     message: 'What Kind of Styling Would You Like?:',
-    choices: ['CSS', 'SCSS']
+    choices: ['CSS', 'SCSS', 'SASS']
   }
 
   const { stylesSetup } = await prompt.ask([askStylesSetup])
