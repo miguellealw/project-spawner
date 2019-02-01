@@ -5,11 +5,11 @@ Quickly and easily generate static web projects with Project Spawner
 ## Quick Overview
 Create A Project
 ```shell
-project-spawner create <name-of-project>
+npx project-spawner create <name-of-project>
 ```
 or
 ```shell
-project-spawner c <name-of-project>
+npx project-spawner c <name-of-project>
 ```
 
 Once you run the create command you are given three setup options: simple setup, medium setup, and advanced setup

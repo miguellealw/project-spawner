@@ -1,8 +1,10 @@
 {
   "name": "project-spawner",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "Quickly and easily generate static web projects with Project Spawner",
-  "private": true,
+  "private": false,
+  "keywords": ["CLI", "generator"],
+  "repository": "https://github.com/miguellealw/project-spawner",
   "bin": {
     "project-spawner": "bin/project-spawner"
   },
