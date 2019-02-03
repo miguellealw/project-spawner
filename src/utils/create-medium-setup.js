@@ -6,7 +6,6 @@ async function createMediumSetup(toolbox) {
     template: { generate },
     filesystem,
     print: { spin, success, info },
-    prompt,
     system
   } = toolbox
 
@@ -19,46 +18,27 @@ async function createMediumSetup(toolbox) {
   const stylesSetup = await stylingPrompt()
   common.stylesSetup = stylesSetup
 
-  if (stylesSetup === 'SCSS' || stylesSetup === 'SASS') {
-    const shouldMakeFolderStructure = await prompt.confirm(
-      `Would You Like your ${stylesSetup} to be Organized in a Folder Structure?: `
-    )
-    common.shouldMakeFolderStructure = shouldMakeFolderStructure
-  }
-
-
   /*
     Require here because 'medium-setup-routes' requires the 'common' object to 
     be populated before the file is read
   */
-  const mediumSetupRoutes = require('./template-file-routes/medium-setup-routes')
-  mediumSetupRoutes.forEach(async template => {
+  const setupRoutes = require('./template-file-routes')
+  setupRoutes.forEach(async template => {
     await generate(template)
     // Create assets folder
     filesystem.dir(`./${nameOfProject}/src/assets`)
   })
 
-
   // Install NPM Packages
   const spinner = spin(
     `Creating project and installing dependencies. This may take a while.`
   )
+
   if (shouldNpmInstall) {
     await system.run(`cd ${nameOfProject} && npm install`)
   }
+
   spinner.stop()
-
-
-  // Return finishing prompt
-  return () => {
-    info(`\n To Start Your Project Run the Following: `)
-    success(`
-      cd ${nameOfProject}
-      ${!shouldNpmInstall ? 'npm install' : ''}
-
-      npm run dev
-    `)
-  }
 }
 
 module.exports = createMediumSetup

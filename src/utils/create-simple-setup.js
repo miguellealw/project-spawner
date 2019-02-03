@@ -1,12 +1,13 @@
-const simpleSetupRoutes = require('./template-file-routes/simple-setup-routes')
+// const simpleSetupRoutes = require('./template-file-routes/simple-setup-routes')
 
-function createSimpleSetup(toolbox, nameOfProject) {
+function createSimpleSetup(toolbox) {
+  const { nameOfProject } = require('./common')
+  const setupRoutes = require('./template-file-routes')
   const {
     template: { generate },
     filesystem
   } = toolbox
-
-  simpleSetupRoutes(nameOfProject).forEach(async template => {
+  setupRoutes.forEach(async template => {
     await generate(template)
     filesystem.dir(`./${nameOfProject}/assets`)
   })

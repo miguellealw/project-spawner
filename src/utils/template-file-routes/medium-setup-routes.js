@@ -97,7 +97,7 @@ const cssFiles = [
 const css =
   stylesSetup === `SCSS` || stylesSetup === 'SASS' ? scssFiles : cssFiles
 
-// Get name of css file
+// Get name of css or scss / sass file
 const cssPathArr = css[0].target.split(`/`)
 const cssFilename = cssPathArr[cssPathArr.length - 1]
 

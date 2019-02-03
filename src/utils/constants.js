@@ -9,7 +9,7 @@ module.exports = {
   MEDIUM_SETUP: `Medium Setup \t\t ${colors.success(
     '(Includes HTML, CSS / SCSS / SASS, and JavaScript all bundled together with Parcel)'
   )}`,
-  CUSTOMIZE_SETUP: `Advanced Setup \t ${colors.success(
+  ADVANCED_SETUP: `Advanced Setup \t ${colors.success(
     '(Choose Specifically What You Want)'
   )}`
 }

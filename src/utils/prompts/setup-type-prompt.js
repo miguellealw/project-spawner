@@ -1,16 +1,19 @@
 const { prompt } = require('gluegun')
 
-const { SIMPLE_SETUP, MEDIUM_SETUP, CUSTOMIZE_SETUP } = require('../constants')
+const { SIMPLE_SETUP, MEDIUM_SETUP, ADVANCED_SETUP } = require('../constants')
+
+const common = require('../common')
 
 async function setupTypePrompt() {
   const askSetupType = {
     type: 'list',
     name: 'setup',
     message: 'Choose Setup:',
-    choices: [SIMPLE_SETUP, MEDIUM_SETUP, CUSTOMIZE_SETUP]
+    choices: [SIMPLE_SETUP, MEDIUM_SETUP, ADVANCED_SETUP]
   }
 
   const { setup } = await prompt.ask([askSetupType])
+  common.setupType = setup
 
   return setup
 }

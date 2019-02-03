@@ -1,4 +1,5 @@
 const { prompt } = require('gluegun')
+const common = require('../common')
 
 async function stylingPrompt() {
   const askStylesSetup = {
@@ -9,6 +10,14 @@ async function stylingPrompt() {
   }
 
   const { stylesSetup } = await prompt.ask([askStylesSetup])
+
+  // Prompt for folder structure
+  if (stylesSetup === 'SCSS' || stylesSetup === 'SASS') {
+    const shouldMakeFolderStructure = await prompt.confirm(
+      `Would You Like your ${stylesSetup} to be Organized in a Folder Structure?: `
+    )
+    common.shouldMakeFolderStructure = shouldMakeFolderStructure
+  }
   return stylesSetup
 }
 
