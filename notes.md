@@ -66,7 +66,7 @@ simply creates a project with a simple folder stuructre
 
 
 ## Alternative
-**Command:** `spc create <name-of-project> --pug --scss --folder n --css-framework bulma`
+**Command:** `ps create <name-of-project> --pug --scss --folder n --css-framework bulma`
 
 
 ## Features for the Future
