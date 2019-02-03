@@ -42,19 +42,22 @@ const mediumSetupHTMLRoutes = cssFilename => [
 //       return 'advanced-setup/src/index-bootstrap.html.ejs'
 //   }
 // }
-const advancedSetupHTMLRoutes = [
+const htmlFilename = cssFramework ? '-' + lowerCase(cssFramework) : ''
+const advancedSetupHTMLRoutes = cssFilename => [
   {
-    template: `advanced-setup/src/index-${lowerCase(cssFramework)}.html.ejs`,
+    template: `advanced-setup/src/index${htmlFilename}.html.ejs`,
     target: `./${nameOfProject}/src/index.html`,
     props: {
-      nameOfProject: startCase(nameOfProject)
+      nameOfProject: startCase(nameOfProject),
+      cssFilename
     }
   },
   {
     template: `medium-setup/src/pages/about.html.ejs`,
     target: `./${nameOfProject}/src/pages/about.html`,
     props: {
-      nameOfProject: startCase(nameOfProject)
+      nameOfProject: startCase(nameOfProject),
+      cssFilename
     }
   }
 ]

@@ -34,7 +34,7 @@ switch (setupType) {
     break
   case ADVANCED_SETUP:
     module.exports = [
-      ...htmlRoutes.advancedSetupHTMLRoutes,
+      ...htmlRoutes.advancedSetupHTMLRoutes(cssFilename),
       ...cssRoutes,
       ...jsRoutes.advancedSetupJSRoutes,
       ...miscRoutes
