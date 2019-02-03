@@ -1,12 +1,16 @@
 const createSimpleSetup = require('../utils/create-simple-setup')
 const createMediumSetup = require('../utils/create-medium-setup')
+const createAdvancedSetup = require('../utils/create-advanced-setup')
+
 const setupTypePrompt = require('../utils/prompts/setup-type-prompt')
+
 // TODO: Instead of doing this try doing process.env['VAR_NAME']
 const common = require('../utils/common')
+
 const {
   SIMPLE_SETUP,
   MEDIUM_SETUP,
-  CUSTOMIZE_SETUP
+  ADVANCED_SETUP
 } = require('../utils/constants')
 
 module.exports = {
@@ -41,18 +45,18 @@ module.exports = {
 
     switch (setup) {
       case SIMPLE_SETUP:
-        await createSimpleSetup(toolbox, nameOfProject)
+        await createSimpleSetup(toolbox)
         break
       case MEDIUM_SETUP:
-        var mediumSetupMessage = await createMediumSetup(toolbox, nameOfProject)
+        await createMediumSetup(toolbox)
         break
-      case CUSTOMIZE_SETUP:
-        error('This is not yet implemented...😢')
-        return
-      // break
+      case ADVANCED_SETUP:
+        await createAdvancedSetup(toolbox)
+        break
     }
 
     success(`\n\n✔ ✔ ✔ Your New Project Was Created Successfully! ✔ ✔ ✔\n\n`)
-    if (setup === MEDIUM_SETUP) mediumSetupMessage()
+    const messages = require('../utils/messages')
+    if (setup === MEDIUM_SETUP || setup === ADVANCED_SETUP) messages.npmInstallComplete()
   }
 }
