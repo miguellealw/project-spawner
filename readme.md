@@ -48,7 +48,7 @@ Once you run the create command you are given three setup options: simple setup,
 
 
 ## Flags
-`--no-npm-i` or `--no-npmI` - use this flag if you do not want the 'medium setup' to automatically `npm install` the dependencies
+`--no-npm-i` or `--no-npmI` - use this flag if you do not want the 'medium setup' and 'advanced setup' to automatically `npm install` the dependencies
 
 
 # License
