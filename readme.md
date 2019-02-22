@@ -27,7 +27,7 @@ Once you run the create command you are given three setup options: simple setup,
 
 **Medium Setup**
 * Contains vanilla HTML, CSS / SCSS / SASS and JavaScript
-* You are given the option to choose which CSS preprossesor you prefer 
+* You are given the option to choose which CSS preprocessor you prefer 
   * SCSS
   * SASS
   * More coming soon...
