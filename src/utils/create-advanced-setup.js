@@ -1,7 +1,7 @@
 const common = require('./common')
 
-const cssFrameworkPrompt = require('./prompts/css-framework-prompt')
-const stylingPrompt = require('./prompts/styling-prompt')
+const promptCssFramework = require('./prompts/prompt-css-framework')
+const promptStyling = require('./prompts/prompt-styling')
 
 async function createAdvancedSetup(toolbox) {
   const {
@@ -17,9 +17,9 @@ async function createAdvancedSetup(toolbox) {
   } = common
 
   // Prompts for advanced setup
-  const stylesSetup = await stylingPrompt()
+  const stylesSetup = await promptStyling()
   common.stylesSetup = stylesSetup
-  const cssFramework = await cssFrameworkPrompt()
+  const cssFramework = await promptCssFramework()
   common.cssFramework = cssFramework
 
   const setupRoutes = require('./template-file-routes')

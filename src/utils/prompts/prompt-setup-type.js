@@ -4,7 +4,7 @@ const { SIMPLE_SETUP, MEDIUM_SETUP, ADVANCED_SETUP } = require('../constants')
 
 const common = require('../common')
 
-async function setupTypePrompt() {
+async function promptSetupType() {
   const askSetupType = {
     type: 'list',
     name: 'setup',
@@ -18,4 +18,4 @@ async function setupTypePrompt() {
   return setup
 }
 
-module.exports = setupTypePrompt
+module.exports = promptSetupType

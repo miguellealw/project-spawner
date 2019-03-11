@@ -1,4 +1,4 @@
-const stylingPrompt = require('./prompts/styling-prompt')
+const promptStyling = require('./prompts/prompt-styling')
 const common = require('./common')
 
 async function createMediumSetup(toolbox) {
@@ -15,7 +15,7 @@ async function createMediumSetup(toolbox) {
   } = common
 
   // Prompt for styling preference
-  const stylesSetup = await stylingPrompt()
+  const stylesSetup = await promptStyling()
   common.stylesSetup = stylesSetup
 
   /*

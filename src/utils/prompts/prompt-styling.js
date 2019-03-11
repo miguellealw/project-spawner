@@ -1,7 +1,7 @@
 const { prompt } = require('gluegun')
 const common = require('../common')
 
-async function stylingPrompt() {
+async function promptStyling() {
   const askStylesSetup = {
     type: 'list',
     name: 'stylesSetup',
@@ -21,4 +21,4 @@ async function stylingPrompt() {
   return stylesSetup
 }
 
-module.exports = stylingPrompt
+module.exports = promptStyling

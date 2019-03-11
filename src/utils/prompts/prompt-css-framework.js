@@ -1,6 +1,6 @@
 const { prompt } = require('gluegun')
 
-async function cssFrameworkPrompt() {
+async function promptCssFramework() {
   const shouldUseCSSFramework = await prompt.confirm(
     `Would you like to use a CSS framework?:`
   )
@@ -20,4 +20,4 @@ async function cssFrameworkPrompt() {
   return null;
 }
 
-module.exports = cssFrameworkPrompt
+module.exports = promptCssFramework

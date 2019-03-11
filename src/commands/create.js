@@ -2,7 +2,7 @@ const createSimpleSetup = require('../utils/create-simple-setup')
 const createMediumSetup = require('../utils/create-medium-setup')
 const createAdvancedSetup = require('../utils/create-advanced-setup')
 
-const setupTypePrompt = require('../utils/prompts/setup-type-prompt')
+const promptSetupType = require('../utils/prompts/prompt-setup-type')
 
 // TODO: Instead of doing this try doing process.env['VAR_NAME']
 const common = require('../utils/common')
@@ -41,7 +41,7 @@ module.exports = {
     spinner.stop()
 
     // Prompt where user selects setup type
-    const setup = await setupTypePrompt()
+    const setup = await promptSetupType()
 
     switch (setup) {
       case SIMPLE_SETUP:
